@@ -1,0 +1,33 @@
+#main, #score_title, .meme {
+    position: absolute;
+}
+
+#main {
+    margin: -110px 0 0 -110px;
+    z-index: 1000;
+    width: 220px;
+    left: 50%;
+    top: 50%;
+}
+
+#score_title {
+    text-transform: uppercase;
+    background: #000;
+    font-size: 36px;
+    color: #fff;
+    padding: 16px;
+    z-index: 1001;
+    right: 20px;
+    top: 60px;
+}
+
+#score_title #score {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 46px;
+}
+
+.meme {
+    z-index: 999;
+    width: 55px;
+}
