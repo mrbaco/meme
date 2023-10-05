@@ -9,9 +9,15 @@ document.getElementById('main').onclick = function () {
 // Получить список всех второстепенных мемов
 let memes = document.getElementsByClassName('meme');
 
-// Получить случайное направление движения (-1, 0 или 1)
-function getDirection() {
-    return Math.floor(Math.random() * 3) - 1;
+// Получить случайное число
+function getRandom(max) {
+    return Math.floor(Math.random() * max);
+}
+
+// Раскидать мемы по странице
+for (let i = memes.length - 1; i >= 0; i--) {
+    memes[i].style.left = getRandom(document.documentElement.clientWidth - 55) + 'px';
+    memes[i].style.top = getRandom(document.documentElement.clientHeight - 55) + 'px';
 }
 
 // Поставить таймер, чтоб мемы прыгали
@@ -21,8 +27,8 @@ function interval(timeout) {
             let currentX = parseInt(memes[i].style.left) || 0;
             let currentY = parseInt(memes[i].style.top) || 0;
 
-            let newDirectionX = getDirection();
-            let newDirectionY = getDirection();
+            let newDirectionX = getRandom(3) - 1;
+            let newDirectionY = getRandom(3) - 1;
 
             let newX = currentX + newDirectionX * shift;
             let newY = currentY + newDirectionY * shift;
