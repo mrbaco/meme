@@ -30,6 +30,7 @@
 
 .meme {
     animation: myAnim 1s linear 0s infinite normal forwards;
+    cursor: pointer;
     z-index: 999;
     width: 55px;
 }
