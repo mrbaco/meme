@@ -45,6 +45,7 @@ function interval(timeout) {
 }
 
 let jumper = interval(1000);
+let toggle = null;
 
 // Добавить обработку клика на каждый второстепенный мем
 for (let i = memes.length - 1; i >= 0; i--) {
@@ -88,7 +89,7 @@ for (let i = memes.length - 1; i >= 0; i--) {
             clearInterval(jumper);
             jumper = interval(250);
             shift = 165;
-            setInterval(() => {
+            toggle = setInterval(() => {
                 if (document.getElementById('score_title').getAttribute('data-color') == 'red') {
                     document.getElementById('score_title').style.background = '#fff';
                     document.getElementById('score_title').style.color = '#000';
@@ -99,6 +100,12 @@ for (let i = memes.length - 1; i >= 0; i--) {
                     document.getElementById('score_title').setAttribute('data-color', 'red');
                 }
             }, 100);
+        }
+
+        if (score == 99) {
+            alert('Ты победил меня!');
+            clearInterval(toggle);
+            clearInterval(jumper);
         }
     };
 }
