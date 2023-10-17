@@ -1,0 +1,49 @@
+name: Deploy to meme.mrbaco.ru
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: deployment
+        # You may pin to the exact commit or the version.
+        # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          host: ${{ secrets.MEME_MRBACO_SERVER_IP }}
+          port: ${{ secrets.MEME_MRBACO_SERVER_PORT }}
+          user: ${{ secrets.MEME_MRBACO_USERNAME }}
+          key: ${{ secrets.MEME_MRBACO_PRIVATE_SSH_KEY }}
+          scp: |
+            './*' => /home/mrbaco/deployment/
+
+      - name: move uploaded files to service dirs
+        # You may pin to the exact commit or the version.
+        # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          host: ${{ secrets.VPN_MRBACO_SERVER_IP }}
+          port: ${{ secrets.VPN_MRBACO_SERVER_PORT }}
+          user: ${{ secrets.VPN_MRBACO_USERNAME }}
+          key: ${{ secrets.VPN_MRBACO_PRIVATE_SSH_KEY }}
+          first_ssh:
+            sudo cp -r /home/mrbaco/deployment/. /var/www/meme.mrbaco.ru/public/
+
+      - name: remove upload dir
+        # You may pin to the exact commit or the version.
+        # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          host: ${{ secrets.VPN_MRBACO_SERVER_IP }}
+          port: ${{ secrets.VPN_MRBACO_SERVER_PORT }}
+          user: ${{ secrets.VPN_MRBACO_USERNAME }}
+          key: ${{ secrets.VPN_MRBACO_PRIVATE_SSH_KEY }}
+          first_ssh:
+            sudo rm -r /home/mrbaco/deployment/
