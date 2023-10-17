@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Бриф на разработку проекта</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="main">
+            <h1>Бриф на разработку проекта</h1>
+            <p id="link"><a href="https://meme.mrbaco.ru/project001">https://meme.mrbaco.ru/project001</a></p>
+            <div id="marquee" class="marquee"><p>&nbsp;</p></div>
+            <p><img src="photo.jpg" id="photo" style="opacity: 0; width: 1px;" /></p>
+            <h2>Задача</h2>
+            <p>Создать клиентское приложение для обмена сообщениями.</p>
+            <h2>Дизайн приложения</h2>
+            <img src="design.png" alt="Макет страницы" />
+            <h2>API</h2>
+            <p>
+                Создание нового сообщения:<br />
+                <code>POST https://meme.mrbaco.ru/api/messages/</code>
+            </p>
+            <p>
+                Пример запроса для создания нового сообщения:<br />
+                <code>
+                    {<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;"name": "Илон Маск",<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;"text": "Привет! &#129505;"<br />
+                    }
+                </code>
+            </p>
+            <p>
+                Получение списка сообщений:<br />
+                <code>GET https://meme.mrbaco.ru/api/messages/</code>
+            </p>
+            <p>
+                Пример ответа со списком сообщений:<br />
+                <code>
+                    [<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"message": "<b>Илон Маск:</b> Всем чмоки в этом чати! &#129505;"<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"message": "<b>Марк Цукерберг:</b> Здарова, бандиты!"<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                    ]
+                </code>
+            </p>
+            <h2>Документация</h2>
+            <p>
+                <small>HTML</small> Рисуем форму:<br />
+                <a href="https://hcdev.ru/html/input/" target="blank">поля ввода текста</a> и <a href="https://hcdev.ru/html/button/" target="blank">кнопка</a>.
+            </p>
+            <p>
+                <small>JAVASCRIPT</small> Добавляем обработчик события на кнопку:<br />
+                поймать клик с помощью <a href="https://learn.javascript.ru/introduction-browser-events#ispolzovanie-svoystva-dom-obekta" target="blank">onclick</a>.
+            </p>
+            <p>
+                <small>JAVASCRIPT</small> Отправляем и обрабатываем HTTP-запросы:<br />
+                метод <a href="https://learn.javascript.ru/fetch" target="blank">fetch</a>.
+            </p>
+            <p>
+                <small>JAVASCRIPT</small> Добавляем код внутрь элемента:<br />
+                используем свойство <a href="https://learn.javascript.ru/basic-dom-node-properties#innerhtml-soderzhimoe-elementa" target="blank">innerHTML</a>.
+            </p>
+        </div>
+        <script type="text/javascript">
+            let getMessages = function () {
+                fetch('https://meme.mrbaco.ru/api/messages/')
+                    .then(response => response.json())
+                    .then(response => {
+                        response.reverse();
+                        let messages = '';
+
+                        document.getElementById('photo').style.opacity = ((response.length - 1) * 3.33) + '%';
+                        document.getElementById('photo').style.height = ((response.length - 1) * 16) + 'px';
+                        document.getElementById('photo').style.width = ((response.length - 1) * 48) + 'px';
+                        
+                        for (let i = 0; i < (response.length <= 5 ? response.length : 5); i++) {
+                            messages += '<span>' + response[i]['message'] + '</span>';
+                        }
+
+                        document.getElementById('marquee').innerHTML = '<p>' + messages + '</p>';
+                    });
+            };
+
+            getMessages();
+            setInterval(getMessages, 10000);
+        </script>
+    </body>
+</html>

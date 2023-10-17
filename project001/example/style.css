@@ -1,0 +1,52 @@
+body {
+    background: #9dff00;
+    font: 12px sans-serif;
+    color: #111;
+}
+
+#main {
+    margin: 32px auto;
+    width: 85vw;
+}
+
+#messages {
+    border: 1px solid #000;
+    overflow: auto;
+    background: #f0efef;
+    padding: 8px;
+    height: 60vh;
+}
+
+#messages img {
+    width: 60vw;
+}
+
+#messages p {
+    margin: 4px;
+}
+
+#form {
+    margin-top: 32px;
+    font-size: 20px;
+}
+
+#form div {
+    display: inline-block;
+}
+
+input {
+    font-size: 28px;
+    padding: 4px;
+}
+
+input#name {
+    width: 15vw;
+}
+
+input#message {
+    width: 55vw;
+}
+
+input#send {
+    width: 10vw;
+}
