@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Разработка</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="main">
+            <h2>Задача</h2>
+            <p>Создать клиентское приложение для обмена сообщениями.</p>
+            <h2>Дизайн приложения</h2>
+            <img src="design.png" alt="Макет страницы" />
+            <h2>API</h2>
+            <p>
+                Создание нового сообщения:<br />
+                <code>POST https://meme.mrbaco.ru/api/messages/</code>
+            </p>
+            <p>
+                Пример запроса для создания нового сообщения:<br />
+                <code>
+                    {<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;"name": "Илон Маск",<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;"text": "Привет! &#129505;"<br />
+                    }
+                </code>
+            </p>
+            <p>
+                Получение списка сообщений:<br />
+                <code>GET https://meme.mrbaco.ru/api/messages/</code>
+            </p>
+            <p>
+                Пример ответа со списком сообщений:<br />
+                <code>
+                    [<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"message": "<b>Илон Маск:</b> Всем чмоки в этом чати! &#129505;"<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"message": "<b>Марк Цукерберг:</b> Здарова, бандиты!"<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                    ]
+                </code>
+            </p>
+            <h2>Документация</h2>
+            <p>
+                <small>HTML</small> Рисуем форму:<br />
+                <a href="https://hcdev.ru/html/input/" target="blank">поля ввода текста</a> и <a href="https://hcdev.ru/html/button/" target="blank">кнопка</a>.
+            </p>
+            <p>
+                <small>JAVASCRIPT</small> Добавляем обработчик события на кнопку:<br />
+                поймать клик с помощью <a href="https://learn.javascript.ru/introduction-browser-events#ispolzovanie-svoystva-dom-obekta" target="blank">onclick</a>.
+            </p>
+            <p>
+                <small>JAVASCRIPT</small> Отправляем и обрабатываем HTTP-запросы:<br />
+                метод <a href="https://learn.javascript.ru/fetch" target="blank">fetch</a>.
+            </p>
+            <p>
+                <small>JAVASCRIPT</small> Добавляем код внутрь элемента:<br />
+                используем свойство <a href="https://learn.javascript.ru/basic-dom-node-properties#innerhtml-soderzhimoe-elementa" target="blank">innerHTML</a>.
+            </p>
+            <h2>Важные конструкции</h2>
+            <p><code>document.getElementById('id элемента');</code></p>
+            <p></p><code>JSON.stringify({здесь объект});</code></p>
+            <p>
+                <code>
+                    setInterval(function () {
+                        // здесь тело функции
+                    });
+                </code>
+            </p>
+            <p></p><code>margin</code></p>
+            <p></p><code>padding</code></p>
+            <p></p><code>overflow</code></p>
+            <p></p><code>background</code></p>
+            <p></p><code>width</code></p>
+            <p></p><code>height</code></p>
+            <p></p><code>margin</code></p>
+        </div>
+    </body>
+</html>

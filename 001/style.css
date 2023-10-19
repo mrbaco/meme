@@ -46,7 +46,7 @@ small {
 }
 
 #notebooks .notebook {
-    line-height: 150px;
+    line-height: 120px;
     text-align: center;
     background: #000;
     overflow: hidden;

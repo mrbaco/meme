@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <input type="text" id="name">
+        <input type="text" id="message">
+        <button id="send">Отправить!</button>
+        <script type="text/javascript">
+            document.getElementById('send').onclick = () => fetch('https://meme.mrbaco.ru/api/messages/', {
+                method: 'post',
+                body: JSON.stringify({
+                    'name': document.getElementById('name').value,
+                    'message': document.getElementById('message').value
+                })
+            });
+
+            /*
+            fetch('https://meme.mrbaco.ru/api/messages')
+                .then(r => r.json())
+                .then(r => console.log(r));
+            */
+        </script>
+    </body>
+</html>
