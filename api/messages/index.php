@@ -61,9 +61,14 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
 
         foreach($files as $filename) {
             if (is_file($filename)) {
-                $response[] = [
-                    'message' => file_get_contents($filename)
-                ];
+                $content = file_get_contents($filename);
+                if (preg_match_all('/<b>(.*?):<\/b> (.*)/', $content, $matches)) {
+                    $response[] = [
+                        'id' => basename($filename, '.txt'),
+                        'name' => $matches[1][0],
+                        'message' => $matches[2][0]
+                    ];
+                }
             }
         }
 

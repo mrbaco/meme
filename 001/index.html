@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Чатег</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="main">
+            <p id="link"><a href="https://meme.mrbaco.ru/001">meme.mrbaco.ru/001</a></p>
+            <p>
+                <a href="i.zip">скачать архив с незаконченным проектом</a><br />
+                <b><a href="https://meme.mrbaco.ru/console" target="blank">нажми здесь</a></b>
+            </p>
+            <div id="notebooks">
+                <div id="left">
+                    <div id="notebook01" class="notebook"><span class="num">01</span></div>
+                    <div id="notebook02" class="notebook"><span class="num">02</span></div>
+                    <div id="notebook03" class="notebook"><span class="num">03</span></div>
+                    <div id="notebook04" class="notebook"><span class="num">04</span></div>
+                    <div id="notebook05" class="notebook"><span class="num">05</span></div>
+                </div>
+                <div id="right">
+                    <div id="notebook11" class="notebook"><span class="num">11</span></div>
+                    <div id="notebook12" class="notebook"><span class="num">12</span></div>
+                    <div id="notebook13" class="notebook"><span class="num">13</span></div>
+                    <div id="notebook14" class="notebook"><span class="num">14</span></div>
+                    <div id="notebook15" class="notebook"><span class="num">15</span></div>
+                </div>
+                <div id="bottom">
+                    <div id="notebook06" class="notebook"><span class="num">06</span></div>
+                    <div id="notebook07" class="notebook"><span class="num">07</span></div>
+                    <div id="notebook08" class="notebook"><span class="num">08</span></div>
+                    <div id="notebook09" class="notebook"><span class="num">09</span></div>
+                    <div id="notebook10" class="notebook"><span class="num">10</span></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            let getMessages = function () {
+                fetch('https://meme.mrbaco.ru/api/messages/')
+                    .then(response => response.json())
+                    .then(response => {
+                        console.log(response);
+                        for (let i = 0; i < response.length; i++) {
+                            let element = document.getElementById('notebook' + response[i]['name']);
+                            console.log('notebook' + response[i]['name']);
+                            if (element) {
+                                element.innerHTML = '<span>' + response[i]['message'] + '</span>';
+                            }
+                        }
+                    });
+            };
+
+            setInterval(getMessages, 1000);
+        </script>
+    </body>
+</html>

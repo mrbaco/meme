@@ -1,0 +1,84 @@
+body {
+    font: 24px sans-serif;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    width: 60vw;
+}
+
+small {
+    font-size: 16px;
+}
+
+#main {
+    margin: 32px auto;
+    width: 85vw;
+}
+
+#main #link {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 64px 0;
+}
+
+#notebooks {
+    font-size: 20px;
+    color: #fff;
+}
+
+#notebooks .notebook {
+    line-height: 150px;
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+    height: 120px;
+    padding: 6px;
+    margin: 14px;
+    width: 280px;
+}
+
+#notebooks .notebook span {
+    line-height: normal;
+}
+
+#notebooks .notebook .num {
+    line-height: normal;
+    font-weight: bold;
+    font-size: 70px;
+}
+
+#notebooks #left {
+    float: left;
+}
+
+#notebooks #right {
+    float: right
+}
+
+#notebooks #bottom {
+    text-align: center;
+    clear: both;
+}
+
+#notebooks #bottom .notebook {
+    display: inline-block;
+}
