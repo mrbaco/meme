@@ -52,7 +52,7 @@
                         let messages = '';
 
                         for (let i = 0; i < response.length; i++) {
-                            messages += '<p>' + response[i]['message'] + '</p>';
+                            messages += '<p><b>' + response[i]['name'] + ':</b> ' + response[i]['message'] + '</p>';
                         }
 
                         document.getElementById('messages').innerHTML = messages;
