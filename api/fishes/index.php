@@ -4,10 +4,10 @@ define('ROOT', dirname(__FILE__));
 
 $control_line = [ // шаг 1.39
 	'qwe', // 80px
+	'qwe_sized',
 	'button',
 	'food',
 	'rty',
-	'qwe_sized',
 	'rty_sized',
 	245,
 	50.45,

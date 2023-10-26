@@ -33,10 +33,12 @@ let create_fish = () => {
 
             fish.className = 'fish';
             fish.style = 'width: 80px;';
-            fish.id = 'fish_' + my_fish.id;
+            fish.id = 'fish';
             fish.innerHTML = '<div class="level"><div class="filled" style="width: 0;"></div></div><img src="https://meme.mrbaco.ru/002/aquarium/fishes/' + my_fish.image + '.png" />';
 
             document.getElementsByTagName('body')[0].appendChild(fish);
+
+            document.getElementById('fish').querySelector('.filled').style.width = (my_fish.level * 0.378) + '%';
         }
     });
 };
@@ -52,6 +54,7 @@ let feed = () => {
         }).then(r => {
             if (r.status == 200) {
                 eat.play();
+                document.getElementById("fish").remove();
                 create_fish();
             } else if (r.status != 204) belch.play();
         });
@@ -61,7 +64,6 @@ let feed = () => {
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('qwe')) {
         put('qwe');
-        feed();
     
         let qwe_element = document.getElementById('qwe');
     
@@ -93,4 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     create_fish();
+
+    let button = document.createElement("button");
+
+    button.onclick = () => feed();
+    button.innerHTML = 'Кормить!';
+
+    document.getElementsByTagName('body')[0].appendChild(button);
 });
