@@ -7,15 +7,59 @@
 		<link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div id="main">
-            <div id="fish_1" class="fish">
-                <p class="message">привет</p>
-                <div class="level"><div class="filled" style="width: 33%;"></div></div>
-                <img src="fishes/1.png" />
-            </div>
-        </div>
+        <div id="main"></div>
         <script type="text/javascript">
-            
+            setInterval(() => {
+                fetch('https://meme.mrbaco.ru/api/fishes/index.php').then(r => r.json()).then(r => {
+                    for (let i = 0; i < r.length; i++) {
+                        let fish = document.getElementById('fish_' + r[i].id);
+
+                        if (fish == undefined) {
+                            let fish = document.createElement("div");
+
+                            fish.className = 'fish';
+                            fish.style = 'width: 80px;';
+                            fish.id = 'fish_' + r[i].id;
+                            fish.innerHTML = '<p class="message"></p><div class="level"><div class="filled" style="width: 0;"></div></div><img src="https://meme.mrbaco.ru/002/aquarium/fishes/' + r[i].image + '.png" />';
+
+                            document.getElementById('main').appendChild(fish);
+                        }
+
+                        fish.style.width = (r[i].level * 1.39 + 80) + 'px';
+                        fish.querySelector('.message').innerHTML = r[i].message;
+                        fish.querySelector('.filled').style.width = (r[i].level * 0.378) + '%';
+                    }
+                });
+            }, 3000);
+
+            let shift = 55;
+
+            function getRandom(max) {
+                return Math.floor(Math.random() * max);
+            }
+
+            setInterval(() => {
+                let fishes = document.getElementsByClassName('fish');
+
+                for (let i = fishes.length - 1; i >= 0; i--) {
+                    let currentX = parseInt(fishes[i].style.left) || 0;
+                    let currentY = parseInt(fishes[i].style.top) || 0;
+
+                    let newDirectionX = getRandom(3) - 1;
+                    let newDirectionY = getRandom(3) - 1;
+
+                    let newX = currentX + newDirectionX * shift;
+                    let newY = currentY + newDirectionY * shift;
+
+                    if (newX >= 0 && newX + 55 <= document.documentElement.clientWidth) {
+                        fishes[i].style.left = newX + 'px';
+                    }
+                    
+                    if (newY >= 0 && newY + 55 <= document.documentElement.clientHeight) {
+                        fishes[i].style.top = newY + 'px';
+                    }
+                }
+            }, 1000);
         </script>
     </body>
 </html>
