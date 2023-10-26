@@ -34,7 +34,9 @@ jobs:
           user: ${{ secrets.MEME_MRBACO_USERNAME }}
           key: ${{ secrets.MEME_MRBACO_PRIVATE_SSH_KEY }}
           first_ssh:
-            sudo cp -r /home/mrbaco/deployment/. /var/www/meme.mrbaco.ru/public/
+            sudo cp -r /home/mrbaco/deployment/. /var/www/meme.mrbaco.ru/public/ &&
+            sudo chmod 777 /var/www/meme.mrbaco.ru/public/api/messages/list/ &&
+            sudo chmod 777 /var/www/meme.mrbaco.ru/public/api/fishes/data/
 
       - name: remove upload dir
         # You may pin to the exact commit or the version.
