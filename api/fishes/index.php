@@ -366,7 +366,7 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
             $fish->message = htmlspecialchars($request->message);
         }
 
-        if ($fish->level == sizeof($request->food)) {
+        if (isset($request->food) && $fish->level == sizeof($request->food)) {
             header('HTTP/1.1 204 No Content');
         } else {
             header('HTTP/1.1 200 OK');
