@@ -327,7 +327,7 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
 
         foreach($files as $filename) {
             if (is_file($filename)) {
-                $response[] = file_get_contents($filename);
+                $response[] = json_decode(file_get_contents($filename));
             }
         }
 
