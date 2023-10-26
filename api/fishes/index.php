@@ -297,7 +297,7 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
                 'id' => $id,
                 'message' => '',
                 'image' => rand(1, 18),
-                'level' => 1
+                'level' => 0
             ], JSON_FORCE_OBJECT)
         );
 
@@ -345,7 +345,7 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
                         'result' => 'belch'
                     ];
 
-                    break;
+                    break 2;
                 }
             }
         }
@@ -369,6 +369,7 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
         if (isset($request->food)) {
             if ($fish->level == sizeof($request->food)) {
                 header('HTTP/1.1 204 No Content');
+                $response = '';
             } else {
                 header('HTTP/1.1 200 OK');
                 $fish->level = sizeof($request->food);
