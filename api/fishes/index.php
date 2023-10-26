@@ -375,6 +375,7 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
             }
         } else {
             header('HTTP/1.1 204 No Content');
+            $response = '';
         }
 
         file_put_contents(ROOT . '/data/' . $request->id . '.txt', json_encode($fish));
@@ -385,6 +386,6 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 
-echo json_encode($response);
+if ($response != '') echo json_encode($response);
 
 ?>
