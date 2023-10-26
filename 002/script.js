@@ -61,6 +61,7 @@ let feed = () => {
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('qwe')) {
         put('qwe');
+        feed();
     
         let qwe_element = document.getElementById('qwe');
     

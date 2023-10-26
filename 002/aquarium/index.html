@@ -15,14 +15,16 @@
                         let fish = document.getElementById('fish_' + r[i].id);
 
                         if (fish == undefined) {
-                            let fish = document.createElement("div");
+                            let e = document.createElement("div");
 
-                            fish.className = 'fish';
-                            fish.style = 'width: 80px;';
-                            fish.id = 'fish_' + r[i].id;
-                            fish.innerHTML = '<p class="message"></p><div class="level"><div class="filled" style="width: 0;"></div></div><img src="https://meme.mrbaco.ru/002/aquarium/fishes/' + r[i].image + '.png" />';
+                            e.className = 'fish';
+                            e.style = 'width: 80px;';
+                            e.id = 'fish_' + r[i].id;
+                            e.innerHTML = '<p class="message"></p><div class="level"><div class="filled" style="width: 0;"></div></div><img src="https://meme.mrbaco.ru/002/aquarium/fishes/' + r[i].image + '.png" />';
 
-                            document.getElementById('main').appendChild(fish);
+                            document.getElementById('main').appendChild(e);
+
+                            fish = document.getElementById('fish_' + r[i].id);
                         }
 
                         fish.style.width = (r[i].level * 1.39 + 80) + 'px';
