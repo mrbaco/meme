@@ -21,7 +21,7 @@ let put = (food) => {
 let create_fish = () => {
     let my_fish;
 
-    fetch('https://meme.mrbaco.ru/api/fishes/').then(r => r.json()).then(r => {
+    fetch('https://meme.mrbaco.ru/api/fishes/index.php').then(r => r.json()).then(r => {
         for (let i = 0; i < r.length; i++) {
             if (r[i].id == fish) {
                 my_fish = r[i].id;
@@ -30,14 +30,14 @@ let create_fish = () => {
         }
 
         if (my_fish != undefined) {
-            
+
         }
     });
 };
 
 let feed = () => {
     if (fish) {
-        fetch('https://meme.mrbaco.ru/api/fishes/', {
+        fetch('https://meme.mrbaco.ru/api/fishes/index.php', {
             method: 'PUT',
             body: JSON.stringify({
                 id: fish,
@@ -53,7 +53,7 @@ let feed = () => {
 };
 
 if (!fish) {
-    fetch('https://meme.mrbaco.ru/api/fishes/', {
+    fetch('https://meme.mrbaco.ru/api/fishes/index.php', {
         method: 'POST'
     }).then(r => r.json()).then(r => {
         document.cookie = 'fish=' + r.id;

@@ -366,11 +366,15 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
             $fish->message = htmlspecialchars($request->message);
         }
 
-        if (isset($request->food) && $fish->level == sizeof($request->food)) {
-            header('HTTP/1.1 204 No Content');
+        if (isset($request->food)) {
+            if ($fish->level == sizeof($request->food)) {
+                header('HTTP/1.1 204 No Content');
+            } else {
+                header('HTTP/1.1 200 OK');
+                $fish->level = sizeof($request->food);
+            }
         } else {
-            header('HTTP/1.1 200 OK');
-            $fish->level = sizeof($request->food);
+            header('HTTP/1.1 204 No Content');
         }
 
         file_put_contents(ROOT . '/data/' . $request->id . '.txt', json_encode($fish));
