@@ -3,8 +3,6 @@ let food_array = [];
 let belch = new Audio('sounds/belch.mp3');
 let eat = new Audio('sounds/eat.mp3');
 
-let fish = getCookie('fish');
-
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -23,14 +21,22 @@ let create_fish = () => {
 
     fetch('https://meme.mrbaco.ru/api/fishes/index.php').then(r => r.json()).then(r => {
         for (let i = 0; i < r.length; i++) {
+            
             if (r[i].id == fish) {
-                my_fish = r[i].id;
+                my_fish = r[i];
                 break;
             }
         }
 
         if (my_fish != undefined) {
+            let fish = document.createElement("div");
 
+            fish.className = 'fish';
+            fish.style = 'width: 80px;';
+            fish.id = 'fish_' + my_fish.id;
+            fish.innerHTML = '<div class="level"><div class="filled" style="width: 0;"></div></div><img src="https://meme.mrbaco.ru/002/aquarium/fishes/' + my_fish.image + '.png" />';
+
+            document.getElementsByTagName('body')[0].appendChild(fish);
         }
     });
 };
@@ -51,17 +57,6 @@ let feed = () => {
         });
     }
 };
-
-if (!fish) {
-    fetch('https://meme.mrbaco.ru/api/fishes/index.php', {
-        method: 'POST'
-    }).then(r => r.json()).then(r => {
-        document.cookie = 'fish=' + r.id;
-        fish = r.id;
-
-        create_fish();
-    });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('qwe')) {
@@ -95,4 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 put('rty_sized');
         }
     }
+
+    create_fish();
 });

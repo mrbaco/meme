@@ -20,3 +20,25 @@ a:hover {
     font-size: 40px;
     margin: 64px 0;
 }
+
+.fish {
+    position: absolute;
+    width: 100px;
+}
+
+.fish img {
+    width: 100%;
+}
+
+.fish .level {
+    background: #000;
+    margin: 0 0 6px 0;
+    padding: 0;
+    height: 10px;
+    width: 100%;
+}
+
+.fish .level .filled {
+    background: #ff8800;
+    height: 10px;
+}

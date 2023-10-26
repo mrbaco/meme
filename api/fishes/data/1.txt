@@ -1,6 +1,6 @@
 {
-    "id": "1_1",
-    "message": "Я самая первая рыба!",
-    "image": 12,
-    "level": 1
+    "id": "1",
+    "message": "",
+    "image": 1,
+    "level": 0
 }
