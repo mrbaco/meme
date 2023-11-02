@@ -21,6 +21,14 @@ a:hover {
     margin: 64px 0;
 }
 
+#controller {
+    border: 1px solid #000;
+    position: absolute;
+    padding: 20px;
+    right: 30px;
+    top: 30px;
+}
+
 .fish {
     position: absolute;
     width: 100px;

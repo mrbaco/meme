@@ -2,5 +2,5 @@
     "id": "1",
     "message": "",
     "image": 1,
-    "level": 0
+    "level": 6
 }

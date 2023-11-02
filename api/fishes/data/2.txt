@@ -1,1 +1,1 @@
-{"id":"2","message":"","image":2,"level":0}
+{"id":"2","message":"","image":2,"level":6}

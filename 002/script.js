@@ -1,7 +1,7 @@
 let food_array = [];
 
-let belch = new Audio('sounds/belch.mp3');
-let eat = new Audio('sounds/eat.mp3');
+let belch = new Audio('https://meme.mrbaco.ru/002/sounds/belch.mp3');
+let eat = new Audio('https://meme.mrbaco.ru/002/sounds/eat.mp3');
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -32,7 +32,7 @@ let create_fish = () => {
             let fish = document.createElement("div");
 
             fish.className = 'fish';
-            fish.style = 'width: 80px;';
+            fish.style = 'width: ' + (my_fish.level * 1.39 + 80) + 'px;';
             fish.id = 'fish';
             fish.innerHTML = '<div class="level"><div class="filled" style="width: 0;"></div></div><img src="https://meme.mrbaco.ru/002/aquarium/fishes/' + my_fish.image + '.png" />';
 
@@ -57,6 +57,20 @@ let feed = () => {
                 document.getElementById("fish").remove();
                 create_fish();
             } else if (r.status != 204) belch.play();
+        });
+    }
+};
+
+let message = () => {
+    let text = document.getElementById('message').value;
+
+    if (text != '') {
+        fetch('https://meme.mrbaco.ru/api/fishes/index.php', {
+            method: 'PUT',
+            body: JSON.stringify({
+                id: fish,
+                message: text
+            })
         });
     }
 };
@@ -94,12 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    let element = document.createElement('div');
+    element.setAttribute('id', 'controller');
+    document.getElementsByTagName('body')[0].appendChild(element);
+
     create_fish();
 
-    let button = document.createElement("button");
+    let button1 = document.createElement('button');
+    let input = document.createElement('input');
+    let button2 = document.createElement('button');
 
-    button.onclick = () => feed();
-    button.innerHTML = 'Кормить!';
+    button1.onclick = () => feed();
+    button1.innerHTML = 'Кормить!';
 
-    document.getElementsByTagName('body')[0].appendChild(button);
+    input.setAttribute('id', 'message');
+
+    button2.onclick = () => message();
+    button2.innerHTML = 'Отправить сообщение';
+
+    document.getElementById('controller').appendChild(button1);
+    document.getElementById('controller').appendChild(input);
+    document.getElementById('controller').appendChild(button2);
 });

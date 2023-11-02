@@ -11,7 +11,7 @@ $control_line = [ // шаг 1.39
 	'rty_sized',
 	245,
 	50.45,
-	290.45,
+	295.45,
 	'привет',
 	'привет, море!',
 	'я маленький апельсин',
@@ -265,8 +265,8 @@ $control_line = [ // шаг 1.39
 	197,
 	198,
 	199,
-	'я поле ввода',
-	'я окно',
+	'текст1',
+	'текст2',
 	'мышь' // 450px
 ];
 
@@ -373,6 +373,9 @@ switch (strtolower($_SERVER['REQUEST_METHOD'])) {
             } else {
                 header('HTTP/1.1 200 OK');
                 $fish->level = sizeof($request->food);
+				if ($fish->level == sizeof($control_line) - 1) {
+					$fish->image = 'golden';
+				}
             }
         } else {
             header('HTTP/1.1 204 No Content');
