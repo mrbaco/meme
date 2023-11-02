@@ -29,6 +29,10 @@ a:hover {
     top: 30px;
 }
 
+#controller input {
+    margin: 0 12px;
+}
+
 .fish {
     position: absolute;
     width: 100px;
