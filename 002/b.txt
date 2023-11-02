@@ -22,7 +22,50 @@
             // внутри тега script пишем JavaScript-код
             document.addEventListener('DOMContentLoaded', () => {
                 // код начинаем писать здесь
+                let a = 245;
+                put(a);
                 
+                let b = 50.45;
+                put(b);
+
+                put(a + b);
+
+                let c = 'привет';
+                put(c);
+
+                put(c + ', море!');
+
+                let d = [10, 20, 30, 'я маленький апельсин'];
+                put(d[3]);
+
+                for (let i = 0; i < 100; i++) {
+                    put(i);
+                }
+
+                for (let i = 0; i < 100; i++) {
+                    if (i % 2 == 0) {
+                        put(i);
+                    }
+                }
+
+                let i = 100;
+                while (i < 200) {
+                    put(i);
+                    i = i + 1;
+                }
+
+                document.getElementById('button').onclick = () => {
+                    put(document.getElementById('food').value);
+
+                    let text = prompt('Введите текст');
+                    put(text);
+                };
+
+                document.getElementById('rty').onmouseover = () => {
+                    put('мышь');
+                    this.onmouseover = null;
+                };
+
                 // создать переменную "a", содержащую число = 245 (покормить рыбу переменной)
                 // создать переменную "b", содержащую дробное число = 50.45 (покоромить рыбу переменной)
                 // сложить две переменных "a + b" (покормить рыбу результатом 295.45)
