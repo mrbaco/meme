@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Ваш сайт</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+        <style>
+            h2 {
+                font-size: 48px;
+                text-align: center;
+            }
+
+            #options {
+                font-size: 32px;
+            }
+
+            #poll {
+                width: 500px;
+                margin: 20px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="poll">
+            <input type="button" value="!" onclick="makeFakeDataFalse()">
+            <div id="result">
+                <h2 align="center" id="question"></h2>
+                <div id="options"></div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            let fakeData = true;
+
+            setInterval(() => {
+                fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=1').then(r => r.json()).then(r => {
+                    document.getElementById('question').innerText = r.question;
+                    let options = document.getElementById('options');
+                    let html = '';
+                    let total = 0;
+
+                    for (let i = 0; r.options.length; i++) {
+                        if (fakeData) {
+                            if (i != 2) {
+                                html += '<b>' + r.options[i].title + ':</b> 0<br />';
+                                total += r.options[i].results;
+                            } else {
+                                html += '<b>' + r.options[i].title + ':</b> ' + total + '<br />';
+                            }
+                        } else {
+                            html += '<b>' + r.options[i].title + ':</b> ' + r.options[i].results + '<br />';
+                        }
+                    }
+
+                    options.innerHTML = html;
+                });
+            }, 500);
+
+            function makeFakeDataFalse() {
+                fakeData = false;
+            }
+        </script>
+    </body>
+</html>

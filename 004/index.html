@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Ваш сайт</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+    </head>
+    <body>
+        <div id="main">
+            <p id="link"><a href="https://meme.mrbaco.ru/004">meme.mrbaco.ru/004</a></p>
+            <p>
+                <a href="https://free.sprinthost.ru/" target="blank">https://free.sprinthost.ru/</a><br />
+                <code>логин</code>.xsph.ru
+            </p>
+            <div id="poll">
+                <h3 id="question"></h3>
+                <div id="options"></div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=1').then(r => r.json()).then(r => {
+                document.getElementById('question').innerText = r.question;
+                let options = document.getElementById('options');
+                let html = '';
+
+                for (let i = 0; r.options.length; i++) {
+                    html += '<input type="radio" name="q" onclick="poll(this);" value="' + r.options[i].id + 
+                        '"' + (r.options[i].enabled == false ? ' disabled="disabled""' : '') + 
+                        '>&nbsp;' + r.options[i].title + '<br />';
+                }
+
+                options.innerHTML = html;
+            });
+
+            function poll(e) {
+                fetch('https://meme.mrbaco.ru/api/polls/index.php', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        poll_id: 1,
+                        option_id: Number(e.value)
+                    })
+                }).then(r => {
+                    if (r.status == 202) {
+                        document.getElementById('poll').innerHTML = '<b>Спасибо за ваш голос!</b>';
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
