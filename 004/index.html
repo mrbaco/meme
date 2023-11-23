@@ -18,21 +18,22 @@
                 <div id="options"></div>
             </div>-->
             <div>
-                Это структура вашего сайта:<br />
-                <code>Новая папка (2)</code><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<a href="i/1.png">1.png</a><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<a href="i/2.png">2.png</a><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<a href="i/index.html">index.html</a>
+                Это структура вашего сайта:
+                <p>
+                    <code>Новая папка (2)</code><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="i/1.png">1.png</a><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="i/2.png">2.png</a><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="i/index.html">index.html</a>
+                </p>
             </div>
         </div>
         <script type="text/javascript">
-            /*
             fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=1').then(r => r.json()).then(r => {
                 document.getElementById('question').innerText = r.question;
                 let options = document.getElementById('options');
                 let html = '';
 
-                for (let i = 0; r.options.length; i++) {
+                for (let i = 0; i < r.options.length; i++) {
                     html += '<input type="radio" name="q" onclick="poll(this);" value="' + r.options[i].id + 
                         '"' + (r.options[i].enabled == false ? ' disabled="disabled""' : '') + 
                         '>&nbsp;' + r.options[i].title + '<br />';
@@ -54,7 +55,6 @@
                     }
                 });
             }
-            */
         </script>
     </body>
 </html>

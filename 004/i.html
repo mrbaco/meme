@@ -39,16 +39,17 @@
                     let html = '';
                     let total = 0;
 
-                    for (let i = 0; r.options.length; i++) {
+                    for (let i = 0; i < r.options.length; i++) {
+                        console.log(i);
                         if (fakeData) {
                             if (i != 2) {
-                                html += '<b>' + r.options[i].title + ':</b> 0<br />';
+                                html += '<p>' + r.options[i].title + ' &mdash; <b>0</b></p>';
                                 total += r.options[i].results;
                             } else {
-                                html += '<b>' + r.options[i].title + ':</b> ' + total + '<br />';
+                                html += '<p>' + r.options[i].title + ' &mdash; <b>' + total + '</b></p>';
                             }
                         } else {
-                            html += '<b>' + r.options[i].title + ':</b> ' + r.options[i].results + '<br />';
+                            html += '<p>' + r.options[i].title + ' &mdash; <b>' + r.options[i].results + '</b></p>';
                         }
                     }
 
