@@ -53,7 +53,22 @@
         <script type="text/javascript">
             document.querySelector('table').addEventListener('click', (element) => {
                 if (element.srcElement.tagName == 'INPUT') {
+                    if (element.srcElement.type == 'text') {
+                        return;
+                    }
+
                     let text_input = document.querySelector('#result');
+
+                    if (element.srcElement.value == 'С') {
+                        text_input.value = '';
+                        return;
+                    }
+
+                    if (element.srcElement.value == '=') {
+                        text_input.value = eval(text_input.value);
+                        return;
+                    }
+
                     text_input.value = text_input.value + element.srcElement.value;
                 }
             });
