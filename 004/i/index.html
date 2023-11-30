@@ -7,12 +7,32 @@
             img {
                 margin: 0 10px 10px 0;
             }
+
+            #content {
+                display: none;
+            }
         </style>
     </head>
     <body>
-        <img src="1.png" align="left" />
-        <h1>Это заголовок</h1>
-        <p>Тут небольшой абзац с текстом.</p>
-        <p>И ещё один абзац с текстом.</p>
+        <div id="auth">
+            Пароль для страницы:<br />
+            <input type="password" id="pass" /><button id="login">Войти!</button>
+        </div>
+        <div id="content">
+            <img src="1.png" align="left" />
+            <h1>Это заголовок</h1>
+            <p>Тут небольшой абзац с текстом.</p>
+            <p>И ещё один абзац с текстом.</p>
+        </div>
+        <script type="text/javascript">
+            document.getElementById('login').onclick = () => {
+                if (document.getElementById('pass').value == 'пароль') {
+                    document.getElementById('auth').style.display = 'none';
+                    document.getElementById('content').style.display = 'block';
+                } else {
+                    alert('К сожалению, вы ввели неправильный пароль!');
+                }
+            };
+        </script>
     </body>
 </html>
