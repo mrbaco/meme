@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Калькулятор</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+    </head>
+    <body>
+        <div id="main">
+            <p id="link"><a href="https://meme.mrbaco.ru/005">meme.mrbaco.ru/005</a></p>
+            <p>
+                <h2><small>HTML</small> Таблицы</h2>
+                <p>
+                    <code>
+                        &lt;table&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Строка 1, ячейка 1<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Строка 1, ячейка 2<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Строка 2, ячейка 1<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Строка 2, ячейка 2<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+                        &lt;/table&gt;
+                    </code>
+                </p>
+                <table>
+                    <tr>
+                        <td>
+                            Строка 1, ячейка 1
+                        </td>
+                        <td>
+                            Строка 1, ячейка 2
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Строка 2, ячейка 1
+                        </td>
+                        <td>
+                            Строка 2, ячейка 2
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <h2><small>HTML</small> Кнопка и поле ввода</h2>
+                <p>
+                    <code>&lt;input type="text" value="Можно читать, писать нельзя!" readonly /&gt;<br />&lt;input type="button" data-name="я атрибут на кнопке" value="Нажми меня!" /&gt;</code>
+                </p>
+                <input type="text" value="Можно читать, писать нельзя!" readonly />
+                <input type="button" data-name="я атрибут на кнопке" value="Нажми меня!" />
+            </p>
+            <p>
+                <h2><small>JavaScript</small> События</h2>
+                <p>
+                    <code>
+                        document.querySelector('input[type="button"]').addEventListener('click', (element) => {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;alert(element.srcElement.tagName);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;alert(element.srcElement.value);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;alert(element.srcElement.getAttribute('data-name'));<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;let text_input = document.querySelector('input[type="text"]');<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;text_input.value = 'привет';<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;text_input.value = text_input.value + ', мир!';<br />
+                        });
+                    </code>
+                    <script type="text/javascript">
+                        document.querySelector('input[type="button"]').addEventListener('click', (element) => {
+                            alert(element.srcElement.tagName);
+                            alert(element.srcElement.value);
+                            alert(element.srcElement.getAttribute('data-name'));
+
+                            let text_input = document.querySelector('input[type="text"]');
+
+                            text_input.value = 'привет';
+                            text_input.value = text_input.value + ', мир!';
+                        });
+                    </script>
+                </p>
+            </p>
+            <p>
+                <h2><small>JavaScript</small> Выполнение кода внутри другого кода</h2>
+                <img src="1.jpg" />
+                <p>
+                    <code>
+                        eval('2 + 2');
+                    </code>
+                </p>
+            </p>
+        </div>
+    </body>
+</html>
