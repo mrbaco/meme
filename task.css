@@ -34,3 +34,9 @@ small {
     font-weight: normal;
     color: #333;
 }
+
+.publication {
+    border: 1px solid #e2e2e2;
+    margin: 12px 0;
+    padding: 12px;
+}
