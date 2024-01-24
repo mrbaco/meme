@@ -22,7 +22,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 if (strtolower($_SERVER['REQUEST_METHOD']) == 'get') {
 
     if (file_exists(ROOT . '/publications.json')) {
-        $response = json_decode(file_get_contents(ROOT . '/publications.json'));
+        $response = array_reverse(json_decode(file_get_contents(ROOT . '/publications.json')));
     }
 
     header('HTTP/1.1 200 OK');
