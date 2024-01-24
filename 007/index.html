@@ -20,7 +20,7 @@
             let messages = [];
 
             setInterval(2000, () => {
-                fetch('https://meme.mrbaco.ru/api/fishes/index.php').then(r => r.json()).then(r => {
+                fetch('https://meme.mrbaco.ru/api/publications/index.php').then(r => r.json()).then(r => {
                     if (r.length != messages.length) {
                         sounds[Math.floor((Math.random()*sounds.length))].play();
                         let content = '';

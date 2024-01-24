@@ -16,7 +16,7 @@
             </div>
         </div>
         <script type="text/javascript">
-            document.querySelector('.publication').addEventListener('click', (event) => {
+            document.querySelectorAll('.publication').forEach(element => element.addEventListener('click', (event) => {
                 var targetElement = event.target || event.srcElement;
 
                 fetch('https://meme.mrbaco.ru/api/publications/index.php', {
@@ -29,7 +29,7 @@
                         targetElement.style.backgroundColor = '#E9FFB2';
                     }
                 });
-            });
+            }));
         </script>
     </body>
 </html>
