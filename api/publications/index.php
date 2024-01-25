@@ -12,7 +12,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
         $json = json_decode(file_get_contents(ROOT . '/publications.json'));
     }
     
-    $json[] = stripslashes(substr(trim($request->publication), 0, 256));
+    $json[] = stripslashes(substr(trim($request->publication), 0, 1024));
 
     file_put_contents(ROOT . '/publications.json', json_encode($json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
