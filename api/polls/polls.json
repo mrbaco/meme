@@ -22,5 +22,29 @@
                 "results": 0
             }
         ]
+    },
+    {
+        "id": 2,
+        "question": "Что вы хотите на следующее занятие?",
+        "options": [
+            {
+                "id": 1,
+                "title": "Давай дальше про бота.",
+                "enabled": true,
+                "results": 0
+            },
+            {
+                "id": 2,
+                "title": "Давай что-нибудь другое.",
+                "enabled": true,
+                "results": 0
+            },
+            {
+                "id": 3,
+                "title": "Мне без разницы.",
+                "enabled": true,
+                "results": 0
+            }
+        ]
     }
 ]

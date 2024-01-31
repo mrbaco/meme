@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Телеграм-бот</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+    </head>
+    <body>
+        <div id="main">
+            <p><img src="/images/wow.jpg" style="cursor: pointer;" onclick="alert('Не нажимай!');" /></p>
+            <div id="poll">
+                <h3 id="question"></h3>
+                <div id="options"></div>
+            </div>
+            <div id="messages"></div>
+        </div>
+        <script type="text/javascript">
+            function get_poll() {
+                fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=2').then(r => r.json()).then(r => {
+                    document.getElementById('question').innerText = r.question;
+                    let options = document.getElementById('options');
+                    let html = '';
+
+                    for (let i = 0; i < r.options.length; i++) {
+                        html += '<input type="radio" name="q" onclick="poll(this);" value="' + r.options[i].id + 
+                            '"' + (r.options[i].enabled == false ? ' disabled="disabled""' : '') + 
+                            '>&nbsp;' + r.options[i].title + '<br />';
+                    }
+
+                    options.innerHTML = html;
+                });
+            }
+
+            function poll(e) {
+                fetch('https://meme.mrbaco.ru/api/polls/index.php', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        poll_id: 2,
+                        option_id: Number(e.value)
+                    })
+                }).then(r => {
+                    if (r.status == 202) {
+                        document.getElementById('poll').innerHTML = '<b>Спасибо за ваш голос!</b>';
+                    }
+                });
+            }
+
+            let sounds = [
+                new Audio('https://meme.mrbaco.ru/002/sounds/belch.mp3'),
+                new Audio('https://meme.mrbaco.ru/002/sounds/eat.mp3')
+            ];
+
+            let messages = [];
+
+            setInterval(() => {
+                fetch('https://meme.mrbaco.ru/api/publications/index.php').then(r => r.json()).then(r => {
+                    if (r.length != messages.length) {
+                        sounds[Math.floor((Math.random()*sounds.length))].play();
+                        let content = '';
+
+                        r.forEach(element => {
+                            content += '<div class="publication">' + element + '</div>';
+                        });
+                        
+                        document.getElementById('messages').innerHTML = content;
+                        messages = r;
+                    }
+                });
+            }, 2000);
+        </script>
+    </body>
+</html>

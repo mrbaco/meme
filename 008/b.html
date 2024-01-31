@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Телеграм-бот</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+        <script type="text/javascript">
+            function get_poll() {}
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="publication">
+                Анонимный опрос (выше).
+                <script type="text/javascript"> get_poll(); </script>
+            </div>
+        </div>
+        <script type="text/javascript">
+            document.querySelectorAll('.publication').forEach(element => element.addEventListener('click', (event) => {
+                fetch('https://meme.mrbaco.ru/api/publications/index.php', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'publication': event.target.innerHTML
+                    })
+                }).then(r => {
+                    if (r.status == 201) {
+                        event.target.style.backgroundColor = '#E9FFB2';
+                    }
+                });
+            }));
+        </script>
+    </body>
+</html>
