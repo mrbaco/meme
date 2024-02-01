@@ -51,10 +51,6 @@
 
             setInterval(() => {
                 fetch('https://meme.mrbaco.ru/api/publications/index.php').then(r => r.json()).then(r => {
-                    if (document.getElementById('poll')) {
-                        get_poll();
-                    }
-
                     if (r.length != messages.length) {
                         sounds[Math.floor((Math.random()*sounds.length))].play();
                         let content = '';
@@ -65,6 +61,11 @@
                         
                         document.getElementById('messages').innerHTML = content;
                         messages = r;
+                    }
+
+                    
+                    if (document.getElementById('poll')) {
+                        get_poll();
                     }
                 });
             }, 2000);
