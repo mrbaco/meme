@@ -9,10 +9,6 @@
     <body>
         <div id="main">
             <p><img src="/images/wow.jpg" style="cursor: pointer;" onclick="alert('Не нажимай!');" /></p>
-            <div id="poll">
-                <h3 id="question"></h3>
-                <div id="options"></div>
-            </div>
             <div id="messages"></div>
         </div>
         <script type="text/javascript">
@@ -55,6 +51,10 @@
 
             setInterval(() => {
                 fetch('https://meme.mrbaco.ru/api/publications/index.php').then(r => r.json()).then(r => {
+                    if (document.getElementById('poll')) {
+                        get_poll();
+                    }
+
                     if (r.length != messages.length) {
                         sounds[Math.floor((Math.random()*sounds.length))].play();
                         let content = '';
