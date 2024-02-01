@@ -20,19 +20,22 @@
         </div>
         <script type="text/javascript">
             setInterval(() => {
-                fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=1').then(r => r.json()).then(r => {
-                    document.getElementById('question').innerText = r.question;
+                fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=2').then(r => r.json()).then(r => {
                     let options = document.getElementById('options');
                     let html = '';
                     let total = 0;
 
                     for (let i = 0; i < r.options.length; i++) {
                         if (r.options[i].results != 0) {
+                            total += r.options[i].results;
                             html += '<p>' + r.options[i].title + ' &mdash; <b>' + r.options[i].results + '</b></p>';
                         }
                     }
 
-                    options.innerHTML = html;
+                    if (total != 0) {
+                        document.getElementById('question').innerText = r.question;
+                        options.innerHTML = html;
+                    }
                 });
             }, 2000);
         </script>
