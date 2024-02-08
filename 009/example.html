@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Крестики-нолики</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            td {
+                border: 1px solid #000;
+                text-align: center;
+                font-weight: bold;
+                font-size: 150px;
+                height: 200px;
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        Побед:
+        <p>
+            x: <span id="x">0</span><br />
+            o: <span id="o">0</span>
+        </p>
+        <table>
+            <tr>
+                <td id="cell_1_1"></td>
+                <td id="cell_1_2"></td>
+                <td id="cell_1_3"></td>
+            </tr>
+            <tr>
+                <td id="cell_2_1"></td>
+                <td id="cell_2_2"></td>
+                <td id="cell_2_3"></td>
+            </tr>
+            <tr>
+                <td id="cell_3_1"></td>
+                <td id="cell_3_2"></td>
+                <td id="cell_3_3"></td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            let state_storage = 'x';
+            let result_x = 0;
+            let result_o = 0;
+
+            function state() {
+                if (state_storage == 'x') {
+                    state_storage = 'o';
+                    return 'x';
+                }
+
+                state_storage = 'x';
+                return 'o';
+            }
+
+            function get_line(line) {
+                return document.getElementById('cell_' + line + '_1').innerText +
+                    document.getElementById('cell_' + line + '_2').innerText +
+                    document.getElementById('cell_' + line + '_3').innerText;
+            }
+
+            function get_row(row) {
+                return document.getElementById('cell_1_' + row).innerText +
+                    document.getElementById('cell_2_' + row).innerText +
+                    document.getElementById('cell_3_' + row).innerText;
+            }
+
+            function get_diagonal(diagonal) {
+                let c1 = 1;
+                let c2 = 2;
+                let c3 = 3;
+
+                if (diagonal == 2) {
+                    c1 = 3;
+                    c3 = 1;
+                }
+
+                return document.getElementById('cell_1_' + c1).innerText +
+                    document.getElementById('cell_2_' + c2).innerText + 
+                    document.getElementById('cell_3_' + c3).innerText;
+            }
+
+            function reset() {
+                let tds = document.querySelectorAll('td');
+
+                for (let i = 0; i < tds.length; i++) {
+                    tds[i].innerText = '';
+                }
+            }
+
+            document.querySelector('table').onclick = (e) => {
+                let cell = e.srcElement;
+                
+                if (cell.innerText == '') {
+                    cell.innerText = state();
+                }
+
+                for (let i = 1; i <= 3; i++) {
+                    let line = get_line(i);
+                    let row = get_row(i);
+                    let d1 = get_diagonal(1);
+                    let d2 = get_diagonal(2);
+
+                    if (line == 'xxx' || row == 'xxx' || d1 == 'xxx' || d2 == 'xxx') {
+                        result_x = result_x + 1;
+                        document.getElementById('x').innerText = result_x;
+                        reset();
+                    }
+
+                    if (line == 'ooo' || row == 'ooo' || d1 == 'ooo' || d2 == 'ooo') {
+                        result_o = result_o + 1;
+                        document.getElementById('o').innerText = result_o;
+                        reset();
+                    }
+                }
+            };
+        </script>
+    </body>
+</html>

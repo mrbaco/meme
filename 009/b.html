@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Крестики-нолики</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+        <script type="text/javascript">
+            function get_poll() {}
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="publication">
+                <code>
+                    &lt;table&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_1_1&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_1_2&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_1_3&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_2_1&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_2_2&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_2_3&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_3_1&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_3_2&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td id=&quot;cell_3_3&quot;&gt;&lt;/td&gt;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+                    &lt;/table&gt;
+                </code>
+            </div>
+            <div class="publication">
+                <code>
+                    document.getElementById('id_элемента')
+                </code>
+            </div>
+            <div class="publication">
+                <code>
+                    document.getElementById('id_элемента')
+                </code>
+            </div>
+            <div class="publication">
+                <code>
+                    document.querySelector('название_тэга').onclick = (e) => {<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;тело_функции_которое_будет_выполняться_только_при_клике<br />
+                    }
+                </code>
+            </div>
+            <div class="publication">
+                <code>
+                    innerText
+                </code>
+            </div>
+            <div class="publication">
+                <code>
+                    function название_функции(параметры) {<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;тело_функции<br />
+                    }
+                </code>
+            </div>
+        </div>
+        <script type="text/javascript">
+            document.querySelectorAll('.publication').forEach(element => element.addEventListener('click', (event) => {
+                fetch('https://meme.mrbaco.ru/api/publications/index.php', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'publication': event.target.innerHTML
+                    })
+                }).then(r => {
+                    if (r.status == 201) {
+                        event.target.style.backgroundColor = '#E9FFB2';
+                    }
+                });
+            }));
+        </script>
+    </body>
+</html>

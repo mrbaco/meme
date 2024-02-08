@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Крестики-нолики</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/task.css" />
+    </head>
+    <body>
+        <div id="main">
+            <p id="link">
+                <a href="https://meme.mrbaco.ru/009">&rarr; meme.mrbaco.ru/009</a>
+            </p>
+            <div id="poll">
+                <div id="result">
+                    <h2 align="center" id="question"></h2>
+                    <div id="options"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            setInterval(() => {
+                fetch('https://meme.mrbaco.ru/api/polls/index.php?poll_id=2').then(r => r.json()).then(r => {
+                    let options = document.getElementById('options');
+                    let html = '';
+                    let total = 0;
+
+                    for (let i = 0; i < r.options.length; i++) {
+                        if (r.options[i].results != 0) {
+                            total += r.options[i].results;
+                            html += '<p>' + r.options[i].title + ' &mdash; <b>' + r.options[i].results + '</b></p>';
+                        }
+                    }
+
+                    if (total != 0) {
+                        document.getElementById('question').innerText = r.question;
+                        options.innerHTML = html;
+                    }
+                });
+            }, 2000);
+        </script>
+    </body>
+</html>
