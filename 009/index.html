@@ -8,6 +8,10 @@
     </head>
     <body>
         <div id="main">
+            <p>
+                <a href="i.zip">Проект</a><br />
+                <a href="/z/">Загрузчик</a>
+            </p>
             <p><img src="/images/bor.jpg" style="cursor: pointer;" onclick="alert('Не нажимай!');" /></p>
             <div id="messages"></div>
         </div>
@@ -43,8 +47,7 @@
             }
 
             let sounds = [
-                new Audio('https://meme.mrbaco.ru/002/sounds/belch.mp3'),
-                new Audio('https://meme.mrbaco.ru/002/sounds/eat.mp3')
+                new Audio('https://meme.mrbaco.ru/002/sounds/kva.mp3')
             ];
 
             let messages = [];
@@ -52,7 +55,7 @@
             setInterval(() => {
                 fetch('https://meme.mrbaco.ru/api/publications/index.php').then(r => r.json()).then(r => {
                     if (r.length != messages.length) {
-                        sounds[Math.floor((Math.random()*sounds.length))].play();
+                        sounds[0].play();
                         let content = '';
 
                         r.forEach(element => {

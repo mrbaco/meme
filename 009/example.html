@@ -27,19 +27,13 @@
         </p>
         <table>
             <tr>
-                <td id="cell_1_1"></td>
-                <td id="cell_1_2"></td>
-                <td id="cell_1_3"></td>
+                <td id="cell_1_1"></td><td id="cell_2_1"></td><td id="cell_3_1"></td>
             </tr>
             <tr>
-                <td id="cell_2_1"></td>
-                <td id="cell_2_2"></td>
-                <td id="cell_2_3"></td>
+                <td id="cell_1_2"></td><td id="cell_2_2"></td><td id="cell_3_2"></td>
             </tr>
             <tr>
-                <td id="cell_3_1"></td>
-                <td id="cell_3_2"></td>
-                <td id="cell_3_3"></td>
+                <td id="cell_1_3"></td><td id="cell_2_3"></td><td id="cell_3_3"></td>
             </tr>
         </table>
         <script type="text/javascript">
@@ -57,33 +51,6 @@
                 return 'o';
             }
 
-            function get_line(line) {
-                return document.getElementById('cell_' + line + '_1').innerText +
-                    document.getElementById('cell_' + line + '_2').innerText +
-                    document.getElementById('cell_' + line + '_3').innerText;
-            }
-
-            function get_row(row) {
-                return document.getElementById('cell_1_' + row).innerText +
-                    document.getElementById('cell_2_' + row).innerText +
-                    document.getElementById('cell_3_' + row).innerText;
-            }
-
-            function get_diagonal(diagonal) {
-                let c1 = 1;
-                let c2 = 2;
-                let c3 = 3;
-
-                if (diagonal == 2) {
-                    c1 = 3;
-                    c3 = 1;
-                }
-
-                return document.getElementById('cell_1_' + c1).innerText +
-                    document.getElementById('cell_2_' + c2).innerText + 
-                    document.getElementById('cell_3_' + c3).innerText;
-            }
-
             function reset() {
                 let tds = document.querySelectorAll('td');
 
@@ -99,23 +66,37 @@
                     cell.innerText = state();
                 }
 
-                for (let i = 1; i <= 3; i++) {
-                    let line = get_line(i);
-                    let row = get_row(i);
-                    let d1 = get_diagonal(1);
-                    let d2 = get_diagonal(2);
+                combinations = [];
 
-                    if (line == 'xxx' || row == 'xxx' || d1 == 'xxx' || d2 == 'xxx') {
-                        result_x = result_x + 1;
-                        document.getElementById('x').innerText = result_x;
-                        reset();
+                for (let x = 1; x <= 3; x++) {
+                    let row = '';
+                    let line = '';
+                    let diagonal1 = '';
+                    let diagonal2 = '';
+
+                    for (let y = 1; y <= 3; y++) {
+                        row += document.getElementById('cell_' + x + '_' + y).innerText;
+                        line += document.getElementById('cell_' + y + '_' + x).innerText;
+                        diagonal1 += document.getElementById('cell_' + y + '_' + y).innerText;
+                        diagonal2 += document.getElementById('cell_' + y + '_' + Math.abs(y - 4)).innerText;
                     }
 
-                    if (line == 'ooo' || row == 'ooo' || d1 == 'ooo' || d2 == 'ooo') {
-                        result_o = result_o + 1;
-                        document.getElementById('o').innerText = result_o;
-                        reset();
-                    }
+                    combinations.push(row);
+                    combinations.push(line);
+                    combinations.push(diagonal1);
+                    combinations.push(diagonal2);
+                }
+
+                if (combinations.includes('xxx')) {
+                    reset();
+                    result_x++;
+                    document.getElementById('x').innerText = result_x;
+                }
+
+                if (combinations.includes('ooo')) {
+                    reset();
+                    result_o++;
+                    document.getElementById('o').innerText = result_o;
                 }
             };
         </script>
