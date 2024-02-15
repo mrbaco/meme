@@ -12,7 +12,7 @@ if (isset($_POST['name'])) {
         setcookie('name', $name);
         $_COOKIE['name'] = $name;
 
-        if (preg_match('/[a-z0-9]{,9}/', $name)) {
+        if (preg_match('/^([a-z0-9]){1,9}$/', $name)) {
             if (!file_exists($subdomains_dir . $name)) {
                 mkdir($subdomains_dir . $name);
             }
