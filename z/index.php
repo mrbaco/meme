@@ -48,7 +48,7 @@ if (isset($_POST['name'])) {
         }
 
         ?>
-        <form action="" method="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
             <p>
                 Название (только символы a-z, 0-9):<br />
                 <input type="text" value="<?php isset($_COOKIE['name']) ? $_COOKIE['name'] : ''; ?>" name="name" />
