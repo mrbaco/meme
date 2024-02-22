@@ -25,6 +25,10 @@
             x: <span id="x">0</span><br />
             o: <span id="o">0</span>
         </p>
+        <p>
+            Игровой сервер:
+            <p><input type="text" id="server" /></p>
+        </p>
         <table>
             <tr>
                 <td id="cell_1_1"></td><td id="cell_2_1"></td><td id="cell_3_1"></td>
@@ -40,6 +44,7 @@
             let state_storage = 'x';
             let result_x = 0;
             let result_o = 0;
+            let old = '0';
 
             function state() {
                 if (state_storage == 'x') {
@@ -64,6 +69,30 @@
                 
                 if (cell.innerText == '') {
                     cell.innerText = state();
+
+                    if (old != cell.innerText) {
+                        let server = document.getElementById('server').value;
+
+                        if (server != '') {
+                            let code = '';
+
+                            for (let x = 1; x <= 3; x++) {
+                                for (let y = 1; y <= 3; y++) {
+                                    let text = document.getElementById('cell_' + x + '_' + y).innerText;
+                                    
+                                    if (text == '') {
+                                        code += '0';
+                                    } else {
+                                        code += text;
+                                    }
+                                }
+
+                                code += '-';
+                            }
+                            
+                            fetch(server + '?set_board=' + code + cell.innerText);
+                        }
+                    }
                 }
 
                 combinations = [];
@@ -99,6 +128,31 @@
                     document.getElementById('o').innerText = result_o;
                 }
             };
+
+            setInterval(() => {
+                let server = document.getElementById('server').value;
+
+                if (server != '') {
+                    fetch(server + '?get_board')
+                        .then(r => r.text())
+                        .then(r => {
+                            let rows = r.split('-');
+                            old = rows[3];
+
+                            for (let x = 1; x <=3; x++) {
+                                let cells = rows[x - 1].split('');
+
+                                for (let y = 1; y <= 3; y++) {
+                                    if (cells[y - 1] != '0') {
+                                        document.getElementById('cell_' + x + '_' + y).innerText = cells[y - 1];
+                                    } else {
+                                        document.getElementById('cell_' + x + '_' + y).innerText = '';
+                                    }
+                                }
+                            }
+                        });
+                }
+            }, 500);
         </script>
     </body>
 </html>
